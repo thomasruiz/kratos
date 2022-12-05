@@ -154,6 +154,7 @@ func SelfServiceHookRegistrationViperSetPost(t *testing.T, conf *config.Config, 
 }
 
 func SelfServiceHookRegistrationViperSetPostPre(t *testing.T, conf *config.Config, strategy string, c []config.SelfServiceHook) {
+	ctx := context.Background()
 	conf.MustSet(ctx, config.HookStrategyKey(config.ViperKeySelfServiceRegistrationPrePersist, strategy), c)
 }
 
