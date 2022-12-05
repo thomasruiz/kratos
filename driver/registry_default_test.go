@@ -317,7 +317,7 @@ func TestDriverDefault_Hooks(t *testing.T) {
 			{
 				uc: "Only session hook configured for password strategy",
 				prep: func(conf *config.Config) {
-					conf.MustSet(config.ViperKeySelfServiceVerificationEnabled, true)
+					conf.MustSet(ctx, config.ViperKeySelfServiceVerificationEnabled, true)
 					conf.MustSet(ctx, config.ViperKeySelfServiceRegistrationPostPersist+".password.hooks", []map[string]interface{}{
 						{"hook": "session"},
 					})
@@ -332,7 +332,7 @@ func TestDriverDefault_Hooks(t *testing.T) {
 			{
 				uc: "A session hook and a web_hook are configured for password strategy",
 				prep: func(conf *config.Config) {
-					conf.MustSet(config.ViperKeySelfServiceVerificationEnabled, true)
+					conf.MustSet(ctx, config.ViperKeySelfServiceVerificationEnabled, true)
 					conf.MustSet(ctx, config.ViperKeySelfServiceRegistrationPostPersist+".password.hooks", []map[string]interface{}{
 						{"hook": "web_hook", "config": map[string]interface{}{"url": "foo", "method": "POST", "body": "bar"}},
 						{"hook": "session"},
@@ -371,7 +371,7 @@ func TestDriverDefault_Hooks(t *testing.T) {
 					conf.MustSet(ctx, config.ViperKeySelfServiceRegistrationPostPersist+".hooks", []map[string]interface{}{
 						{"hook": "web_hook", "config": map[string]interface{}{"url": "bar", "method": "POST"}},
 					})
-					conf.MustSet(config.ViperKeySelfServiceVerificationEnabled, true)
+					conf.MustSet(ctx, config.ViperKeySelfServiceVerificationEnabled, true)
 				},
 				expect: func(reg *driver.RegistryDefault) []registration.PostHookPostPersistExecutor {
 					return []registration.PostHookPostPersistExecutor{

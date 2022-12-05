@@ -261,7 +261,7 @@ func TestViperProvider(t *testing.T) {
 				},
 			} {
 				t.Run("hook=after.pre/strategy="+tc.strategy, func(t *testing.T) {
-					hooks := p.SelfServiceFlowRegistrationPrePersistHooks(tc.strategy)
+					hooks := p.SelfServiceFlowRegistrationPrePersistHooks(ctx, tc.strategy)
 					assert.Equal(t, tc.hooks, hooks)
 				})
 			}
